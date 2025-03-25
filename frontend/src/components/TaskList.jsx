@@ -15,7 +15,9 @@ const TaskList = ({ tasks, fetchTasks }) => {
   const addTask = async () => {
     if (newTask.trim() === "") return;
     try {
-      await axios.post("http://localhost:5000/tasks", { title: newTask });
+      await axios.post("https://task-management-ocf4.onrender.com/tasks", {
+        title: newTask,
+      });
       setNewTask("");
       fetchTasks();
     } catch (error) {
@@ -26,7 +28,9 @@ const TaskList = ({ tasks, fetchTasks }) => {
   // ✅ Delete task
   const deleteTask = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/tasks/${id}`);
+      await axios.delete(
+        `https://task-management-ocf4.onrender.com/tasks/${id}`
+      );
       fetchTasks();
     } catch (error) {
       console.error("Error deleting task:", error);
@@ -37,7 +41,7 @@ const TaskList = ({ tasks, fetchTasks }) => {
   const updateTask = async (id) => {
     if (editTitle.trim() === "") return;
     try {
-      await axios.put(`http://localhost:5000/tasks/${id}`, {
+      await axios.put(`https://task-management-ocf4.onrender.com/tasks/${id}`, {
         title: editTitle,
       });
       setEditId(null);
@@ -50,7 +54,9 @@ const TaskList = ({ tasks, fetchTasks }) => {
   // ✅ Toggle task completion
   const toggleTaskCompletion = async (id, completed) => {
     try {
-      await axios.put(`http://localhost:5000/tasks/${id}`, { completed });
+      await axios.put(`https://task-management-ocf4.onrender.com/tasks/${id}`, {
+        completed,
+      });
       fetchTasks();
     } catch (error) {
       console.error("Error updating task completion:", error);
